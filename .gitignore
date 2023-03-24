@@ -10,28 +10,32 @@ Cargo.lock
 **/*.rs.bk
 
 
+# Added by cargo, modified by me
+
+/compreston/target
+
+
 # Added by cargo
+#
+# already existing elements were commented out
 
-/target
+#/target
 
 
+# Added by cargo
+#
+# already existing elements were commented out
+
+#/target
+
+
+# Added by cargo
+#
+# already existing elements were commented out
+
+#/target
+
+# Just cloning the repo
+serenity/
+# No secret leaking allowed
 Secrets.toml
-# Added by cargo
-#
-# already existing elements were commented out
-
-#/target
-
-
-# Added by cargo
-#
-# already existing elements were commented out
-
-#/target
-
-
-# Added by cargo
-#
-# already existing elements were commented out
-
-#/target
