@@ -25,6 +25,7 @@
         </small>
       {% endif %}
       
+      <form action="/" method="post" enctype="mutlipart/form-data">
       <fieldset>
         {{
           m::input(
@@ -33,5 +34,10 @@
             name="submission.file"
           )
         }}
-        <! -- <input type="file" name="submission.file" id="file" required accept=" .mp4"> -->
+
+        <input type="file" name="submission.file" id="file">
       </fieldset>
+
+      <input type="submit" value="Submit" class="is-full-width" />
+    </form>
+    </div>
