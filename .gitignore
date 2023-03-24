@@ -13,7 +13,7 @@ Cargo.lock
 # Added by cargo, modified by me
 
 /compreston/target
-
+/compreston-site/target
 
 # Added by cargo
 #
@@ -37,5 +37,7 @@ Cargo.lock
 
 # Just cloning the repo
 serenity/
+# Also just cloning this one
+Rocket/
 # No secret leaking allowed
 Secrets.toml
