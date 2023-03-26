@@ -14,6 +14,7 @@ Cargo.lock
 
 /compreston/target
 /compreston-site/target
+/compreston-axum/target/
 
 # Added by cargo
 #
@@ -38,6 +39,6 @@ Cargo.lock
 # Just cloning the repo
 serenity/
 # Also just cloning this one
-Rocket/
+axum/
 # No secret leaking allowed
 Secrets.toml
