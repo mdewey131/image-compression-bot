@@ -1,13 +1,17 @@
 
 use axum::{
     extract::{DefaultBodyLimit, Multipart},
-    response::Html,
+    response::{Html, IntoResponse}, 
     routing::get,
-    Router,
+    Router, body::Bytes,
+    Json, 
+    http::StatusCode,
 };
 use std::net::SocketAddr;
 use tower_http::limit::RequestBodyLimitLayer;
 use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};
+use serde::{Serialize, Deserialize};
+
 
 #[tokio::main]
 async fn main() {
@@ -27,7 +31,9 @@ async fn main() {
         .layer(RequestBodyLimitLayer::new(
             250*1024*1024, /* 250mb */
         ))
-        .layer(tower_http::trace::TraceLayer::new_for_http());
+        .layer(tower_http::trace::TraceLayer::new_for_http())
+        .route("/success", get(show_success));
+
 
     //  Run it with hyyper
     let addr = SocketAddr::from(([127, 0, 0, 1], 3000));
@@ -59,7 +65,9 @@ async fn show_form() -> Html<&'static str> {
     )
 }
 
-async fn accept_form(mut multipart: Multipart) {
+
+// This section creates the structs that will be used in the website
+async fn accept_form(mut multipart: Multipart) -> impl IntoResponse { 
     while let Some(field) = multipart.next_field().await.unwrap() {
         let name = field.name().unwrap().to_string();
         let file_name = field.file_name().unwrap().to_string();
@@ -73,7 +81,13 @@ async fn accept_form(mut multipart: Multipart) {
             content_type,
             data.len()
         );
-
-        
+    // Strategy here is to upload these to a DB (ideally, a local one), then to use it when we get there. 
+    // The problem with returning here is that we expect something regardless of how many times the loop runs,
+    // but there's no way to do that kind of checking. 
     }
+    (StatusCode::ACCEPTED, Json(""))
 }
+async fn show_success(submission: Bytes) {
+    submission.len();
+} 
+
