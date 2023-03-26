@@ -85,7 +85,7 @@ async fn accept_form(mut multipart: Multipart) -> impl IntoResponse {
     // The problem with returning here is that we expect something regardless of how many times the loop runs,
     // but there's no way to do that kind of checking. 
     }
-    (StatusCode::ACCEPTED, Json(""))
+    (StatusCode::ACCEPTED, Json("This... prints?"))
 }
 async fn show_success(submission: Bytes) {
     submission.len();
